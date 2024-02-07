@@ -1,0 +1,1 @@
+echo "<h1>This is first post php page</h1>";
