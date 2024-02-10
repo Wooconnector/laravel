@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // Route::get('/post', function () {
 //     return view('post');
@@ -146,19 +146,61 @@ Route::get('/', function () {
    * -------------------------------------------------------------------------------------------------------------------------
    *  ============================= LET'S DISCUSS ABOUT NAMING ROUTE =========================================================
    * 
-   *  DEFINITION : This 'name' function helps to set the route route default name so lets say if future you're going to change the
+   *  DEFINITION : This 'name' function helps to set the route route default name so lets say in future you're going to change the
    *  route name then this help you to keep you other route name as it is it just it will change to loadinng view file
    * -------------------------------------------------------------------------------------------------------------------------
    * 
    * 
    */
 
-  Route::get('/post',function(){
+   Route::get('/', function () {
+        return view('welcome');
+    })->name('home');
+
+  Route::get('/posttt',function(){
     return view('post');
-  })->name('post');
+  })->name('mypostpage');
+  
+  /**
+   *  ->name('mypostpage'); function is use to tell which view you neeed to load when you get different route name in the anchor tag
+   *  as you can see in the above example get('/posttt') that can't be a valid rout If we try to do with old approach with direct name in 
+   *  anchor tag for example on welcome.blade.php page : <a href="{{ route('mypostpage') }}">  Post Page</a> here It will look for the
+   * mypostpage rout directly.
+   */
 
-
-Route::get('/about', function(){
+Route::get('/aboutttttttt', function(){
     return view('about');
-})->name('about');
+})->name('myaboutpage'); 
+
+/**
+ * here ->name('myaboutpage'); tell you just need to look for the about route <a href=" {{ route('myaboutpage') }} "> About Page</a>
+ * Here in this anchor tag example this is tellinng you look for myaboutpage route and render the page.
+ * same thing happening in the above example also. there will be no affect on the anchor tags because they're looking for the named rout
+ * 
+ * for example if we want to add sub-route and still want load about page It will do the same 
+ * 
+    Route::get('/aboutttttttt/subrout', function(){
+         return view('about');
+     })->name('myaboutpage'); 
+ * 
+ * It will still work in the same way.
+ * 
+ */
+
+ /**
+  * 
+     How to tell browser if there was any bookbark to do not redirect to old router just redirect to new url, to do that We need to
+     redirect function with the old rout and the new route
+     
+     Route::redirect('/old', '/new', browser_code );
+
+     for example if we want to continue with about page to new route then How it will look like?
+
+     Route::redirect('\about', '\new');
+  */
+ 
+
+
+
+
 
